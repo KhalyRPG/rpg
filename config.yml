@@ -1,0 +1,25 @@
+Items:
+  Rarity-Color:
+    COMMON: WHITE
+    UNCOMMON: GREEN
+    RARE: BLUE
+    EPIC: DARK_PURPLE
+    LEGENDARY: GOLD
+    MYTHIC: LIGHT_PURPLE
+    SPECIAL: RED
+    VERY_SPECIAL: RED
+Ability:
+  FIRESHOT:
+    Display-Name: "FireShot"
+    Description: "Descripcion."
+    Mana-Cost: 120
+  DEEPER:
+    Display-Name: "Deeper"
+    Description: "Descripcion."
+    Mana-Cost: 80
+  DEZURDIZADOR:
+    Display-Name: "Deszurdizador"
+    Description: "Te vuelve de derecha ojo."
+    Mana-Cost: 500
+Messages:
+  Error: "An error was ocurred: %s"

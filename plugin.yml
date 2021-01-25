@@ -1,0 +1,8 @@
+main: me.atog.anr.plugin.RPGMain
+version: 1.0
+name: MMORPG
+description: Plugin mmorpg
+author: Atog
+depend: [SkillAPI]
+
+commands:
