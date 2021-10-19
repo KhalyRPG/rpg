@@ -1,0 +1,34 @@
+Configuration:
+  Ranks:
+    S:
+      char: "S"
+      priority: 5
+      score: 485
+      color: GOLD
+      requirements: "STRENGTH:65,COMBAT_LEVEL:50"
+    Ranks:
+    A:
+      char: "A"
+      priority: 4
+      score: 250
+      color: AQUA
+      requirements: "STRENGTH:35,COMBAT_LEVEL:25"
+    Ranks:
+    B:
+      char: "B"
+      priority: 3
+      score: 165
+      color: BLUE
+      requirements: "COMBAT_LEVEL:10"
+    Ranks:
+    C:
+      char: "C"
+      priority: 2
+      score: 100
+      color: GRAY
+      requirements: "COMBAT_LEVEL:5"
+    F:
+      char: "F"
+      priority: 1
+      score: 0
+      color: DARK_GRAY

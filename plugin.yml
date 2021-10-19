@@ -1,0 +1,21 @@
+main: me.khaly.core.KhalyCore
+version: 0.1
+name: core
+author: iAtog
+description: Core de KhalyRPG!
+depend: [WorldGuard, ProtocolLib, HolographicDisplays, MythicMobs]
+softdepend: [PlaceholderAPI]
+
+commands:
+
+permissions:
+  khalyrpg.staff:
+    description: Staff permission
+  khaly.dev:
+    description: Dev permission
+  khalyrpg.staffduty:
+    description: Permission to use staffduty command
+  khaly.chatcolor:
+    description: white color in chat messages
+  khaly.vip:
+    description: vip permission

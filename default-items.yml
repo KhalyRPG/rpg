@@ -1,0 +1,35 @@
+# Rarezas:
+# -------------------
+# COMMON = Común
+# UNCOMMON = No común
+# RARE = Raro
+# EPIC = Épico
+# FABLED = Legendario
+# MYTHIC = Mítico
+# SPECIAL = Especial
+# -------------------
+# Tipos:
+# -------------------
+# WEAPON = Arma
+# ARMOR = Armadura
+# WAND = Varita
+# BOW = Arco
+# SHIELD = Escudo
+# FOOD = Comida
+# ACCESSORY = Accesorio
+# ELEMENT = Elemento
+# GEM = Gema
+# MINERAL = Mineral
+# ELYTRA = Élitros
+# ORB = Orbe
+# OTHER = Otro
+# -------------------
+items:
+  diamond:
+    name: Diamante
+    rarity: rare
+    type: mineral
+    khaly:
+      enchantable: false
+  emerald:
+    
