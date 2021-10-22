@@ -3,6 +3,8 @@ package me.khaly.core.user.attributes.stat;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.common.collect.ImmutableSet;
+
 import me.khaly.core.enums.StatAttribute;
 import me.khaly.core.user.attributes.modifier.StatModifier;
 
@@ -28,7 +30,7 @@ public class UserAttribute {
 	
 	public double getValue() {
 		double value = baseValue;
-		for(StatModifier modifier : modifiers.values()) {
+		for(StatModifier modifier : ImmutableSet.copyOf(modifiers.values())) {
 			value += modifier.getValue();
 		}
 		return value;

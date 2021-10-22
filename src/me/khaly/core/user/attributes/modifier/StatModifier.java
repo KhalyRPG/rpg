@@ -28,7 +28,7 @@ public class StatModifier {
 		public void set(double value) {
 			this.value = value;
 		}
-		
+
 		public double get() {
 			return value;
 		}

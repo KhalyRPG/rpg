@@ -2,13 +2,16 @@ package me.khaly.core.rpg.classes.object;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.util.ChatPaginator;
 
 import me.khaly.core.util.TextUtil;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
@@ -23,7 +26,8 @@ public abstract class RPGClass {
 	private ItemStack id;
 	private int maxLevel;
 	private String shortText;
-	protected List<String> description;
+	private String[] description;
+	private Map<String, RPGClassAbility> abilities;
 	
 	private double[] health;
 	private double[] intelligence;
@@ -33,7 +37,8 @@ public abstract class RPGClass {
 	private double manaRegen;
 	
 	public RPGClass(String uuid,String name, ItemStack id, int maxLevel) {
-		this.description = new ArrayList<>();
+		this.description = new String[] {};
+		this.abilities = new HashMap<>();
 		
 		this.uuid = uuid;
 		this.name = name;
@@ -46,6 +51,10 @@ public abstract class RPGClass {
 		this.attackDamage = doubleDefault;
 		this.rangedDamage = doubleDefault;
 		this.strength = doubleDefault;
+	}
+	
+	protected void setDescription(int length, String description) {
+		this.description = ChatPaginator.paginate(description, length).getLines();
 	}
 	
 	protected void setHealth(double base, double scale) {
@@ -78,8 +87,8 @@ public abstract class RPGClass {
 		};
 	}
 	
-	public List<String> getDescription() {
-		return Collections.unmodifiableList(description);
+	public String[] getDescription() {
+		return description;
 	}
 	
 	public double getBaseHealth() {
@@ -199,10 +208,29 @@ public abstract class RPGClass {
 		return shortText;
 	}
 	
-	public void setShortText(String text) {
+	protected void setShortText(String text) {
 		this.shortText = text;
 	}
 	
+	public Map<String, RPGClassAbility> getAbilities() {
+		return Collections.unmodifiableMap(abilities);
+	}
+	
+	public void addAbility(RPGClassAbility ability) {
+		abilities.put(ability.getId(), ability);
+	}
+	
+	public void removeAbility(String id) {
+		abilities.remove(id);
+	}
+	
+	public void removeAbility(RPGClassAbility ability) {
+		removeAbility(ability.getId());
+	}
+	
+	public RPGClassAbility getAbility(String id) {
+		return abilities.get(id);
+	}
 	
 	public ItemStack buildItem() {
 		ItemStack item = new ItemStack(getIcon()) {{
@@ -210,7 +238,9 @@ public abstract class RPGClass {
 			meta.setDisplayName(getPrefix());
 			List<String> lore = new ArrayList<>();
 			lore.add(" ");
-			getDescription().forEach(txt -> lore.add(TextUtil.color("&7"+txt)));
+			for(String line : getDescription()) {
+				lore.add(TextUtil.color("&7" + line));
+			}
 			lore.add(TextUtil.color(" "));
 			meta.setLore(lore);
 			meta.addItemFlags(ItemFlag.values());

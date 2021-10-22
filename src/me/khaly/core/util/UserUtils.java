@@ -55,8 +55,6 @@ public class UserUtils {
 		
 		double result = (1 + damage) * (1 + (strength / 50)) + (1 + (energy / 800));
 		
-		
-		
 		if(type.getAttribute() != null) {
 			double percentage = player.getAttribute(type.getAttribute()).getValue();
 			result = MathUtils.increaseByPercentage(result, percentage);
