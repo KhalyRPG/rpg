@@ -1,6 +1,5 @@
 package me.khaly.core.gui;
 
-import java.util.List;
 import java.util.Map;
 
 import org.bukkit.Bukkit;
@@ -53,7 +52,7 @@ public class ProfileSelectionGUI extends Gui {
 			if(index > 5) {
 				break;
 			}
-			List<String> description = value.getDescription();
+			String[] description = value.getDescription();
 			StringBuilder lore = new StringBuilder();
 			lore.append("§8" + value.getShortText() + "¢");
 			lore.append("¢");

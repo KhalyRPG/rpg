@@ -14,7 +14,15 @@ public class Archer extends RPGClass {
 		setStrength(0, 1.875);
 		setRangedDamage(2.3, 1.875);
 		setMeleeDamage(-63.8, 0);
-		
+
+		setDescription(32,
+				"El arquero ayuda a su equipo con"
+				+ " provenientes de la naturaleza para protegerlos. "
+				+ "Son una parte táctica de cualquier grupo, con "
+				+ "sus ataques de larga distancia. "
+				+ "Los arqueros pueden equipar "
+				+ "arcos o ballestas.");
+		/*
 		description.add("El arquero ayuda a su equipo");
 		description.add("con provenientes de la naturaleza");
 		description.add("para protegerlos. Son una parte");
@@ -22,9 +30,10 @@ public class Archer extends RPGClass {
 		description.add("sus ataques de larga distancia. ");
 		description.add("Los arqueros pueden equipar arcos");
 		description.add("o ballestas.");
-
+		*/
+	
 		setColor(ChatColor.DARK_AQUA);
 		setManaRegen(4);
-		setShortText("Ranged");
+		setShortText("A distancia");
 	}
 }

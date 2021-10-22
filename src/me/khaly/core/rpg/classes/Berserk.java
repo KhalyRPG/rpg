@@ -16,15 +16,22 @@ public class Berserk extends RPGClass {
 		setMeleeDamage(2.3, 1.875);
 		setRangedDamage(-63.8, 0);
 		
+		setDescription(32, "El Berserker es una clase luchadora. "
+				+ "Se caracteriza por su alto ataque y capacidad "
+				+ "de combear rápido. Principalmente usan hachas "
+				+ "y espadas, aunque también pueden usar martillos, "
+				+ "arcos y armas de fuego.");
+		
+		/*
 		description.add("El Berserker es una clase luchadora.");
 		description.add("Se caracteriza por su alto ataque");
 		description.add("y capacidad de combear rápido.");
 		description.add("Principalmente usan hachas y");
 		description.add("espadas, aunque también pueden usar");
 		description.add("martillos, arcos y armas de fuego.");
-		
+		*/
 		setColor(ChatColor.GRAY);
 		setManaRegen(4);
-		setShortText("Melee");
+		setShortText("Cuerpo a cuerpo");
 	}
 }

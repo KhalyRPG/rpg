@@ -15,6 +15,13 @@ public class Mage extends RPGClass {
 		setMeleeDamage(1.1, 0.1);
 		setRangedDamage(1.1, 0.1);
 		
+		setDescription(32, "Los magos son seres con capacidades "
+				+ "inhumanas de usar magia. Su especialidad es el uso "
+				+ "de magia pesada, debido a esto, son más débiles "
+				+ "cuerpo a cuerpo y con armas a distancia. "
+				+ "Tienen poca defensa para compensar sus habilidades "
+				+ "mágicas pero son más eficientes usando esa §l§benergía§7.");
+		/*
 		description.add("Los magos son seres con capacidades");
 		description.add("inhumanas de usar mágia. Su especialidad");
 		description.add("es el uso de mágia pesada, debido a esto,");
@@ -22,9 +29,9 @@ public class Mage extends RPGClass {
 		description.add("a distancia. Tienen poca defensa para compensar");
 		description.add("sus habilidades mágicas pero son más eficientes");
 		description.add("usando esa §l§benergía§r.");
-				
+		*/	
 		setColor(ChatColor.AQUA);
 		setManaRegen(5);
-		setShortText("Ranged/Melee");
+		setShortText("A distancia/Cuerpo a cuerpo");
 	}
 }
