@@ -91,7 +91,7 @@ public class ProfileSelectionGUI extends Gui {
 				}
 			}, 20);
 		});
-		
+
 		return builder.build();
 	}
 
