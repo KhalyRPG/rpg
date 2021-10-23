@@ -18,7 +18,10 @@ import me.khaly.core.module.LocalModuleManager;
 import me.khaly.core.module.Module;
 import me.khaly.core.util.Futures;
 
-@Command(names = { "module" }, permission = "khaly.module")
+@Command(names = {
+		"module",
+		"modules"
+}, permission = "khaly.module")
 public class ModuleCommand implements CommandClass {
 
 	private KhalyCore core;
@@ -133,8 +136,8 @@ public class ModuleCommand implements CommandClass {
 		}
 
 		List<List<String>> partitions = Lists.partition(modules.stream().sorted().collect(Collectors.toList()), 10);
-		sender.sendMessage("§7Un total de " + modules.size() + " módulos activos:");
-		sender.sendMessage(partitions.stream().map(partition -> String.join("&7, &a", partition))
+		sender.sendMessage("§7Un total de §a" + modules.size() + " §7módulos activos:");
+		sender.sendMessage(partitions.stream().map(partition -> String.join("§7, §a", partition))
             .collect(Collectors.joining("\n")));
 
 	}
