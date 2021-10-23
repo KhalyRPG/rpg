@@ -9,7 +9,7 @@ import me.khaly.core.rpg.classes.object.RPGClass;
 public class Berserk extends RPGClass {
 	
 	public Berserk() {
-		super("berserk", "Berserker", new ItemStack(Material.IRON_SWORD), 50);
+		super("berserk", "Berserk", new ItemStack(Material.IRON_SWORD), 50);
 		setHealth(0, 2.875);
 		setIntelligence(0, 3.04);
 		setStrength(0, 2.875);
