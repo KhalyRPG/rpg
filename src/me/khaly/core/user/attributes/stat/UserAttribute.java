@@ -38,6 +38,9 @@ public class UserAttribute {
 	
 	public void addModifier(StatModifier... modifiers) {
 		for(StatModifier modifier : modifiers) {
+			if(this.modifiers.containsKey(modifier.getID())) {
+				this.modifiers.remove(modifier.getID());
+			}
 			this.modifiers.put(modifier.getID(), modifier);
 		}
 	}
