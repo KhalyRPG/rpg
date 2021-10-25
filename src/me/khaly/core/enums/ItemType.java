@@ -8,12 +8,16 @@ public enum ItemType {
 	BOW("Arco"),
 	SHIELD("Escudo"),
 	FOOD("Comida"),
-	ACCESSORY("Accesorio"),
 	ELEMENT("Elemento"),
 	GEM("Gema"),
 	MINERAL("Mineral"),
 	ELYTRA("Élitros"),
 	ORB("Orbe"),
+	
+	RING("Anillo"),
+	COLLAR("Collar"),
+	BRACELET("Brazalete"),
+	
 	OTHER("Otro");
 	private String display;
 	
