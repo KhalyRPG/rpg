@@ -15,7 +15,7 @@ public class Mage extends RPGClass {
 		setMeleeDamage(1.1, 0.1);
 		setRangedDamage(1.1, 0.1);
 		
-		setDescription(32, "Los magos son seres con capacidades "
+		setDescription(26, "Los magos son seres con capacidades "
 				+ "inhumanas de usar magia. Su especialidad es el uso "
 				+ "de magia pesada, debido a esto, son más débiles "
 				+ "cuerpo a cuerpo y con armas a distancia. "

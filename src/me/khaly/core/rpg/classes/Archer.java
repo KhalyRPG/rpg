@@ -15,7 +15,7 @@ public class Archer extends RPGClass {
 		setRangedDamage(2.3, 1.875);
 		setMeleeDamage(-63.8, 0);
 
-		setDescription(32,
+		setDescription(26,
 				"El arquero ayuda a su equipo con"
 				+ " provenientes de la naturaleza para protegerlos. "
 				+ "Son una parte táctica de cualquier grupo, con "

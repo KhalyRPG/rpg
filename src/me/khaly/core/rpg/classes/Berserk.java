@@ -16,7 +16,7 @@ public class Berserk extends RPGClass {
 		setMeleeDamage(2.3, 1.875);
 		setRangedDamage(-63.8, 0);
 		
-		setDescription(32, "El Berserker es una clase luchadora. "
+		setDescription(26, "El Berserker es una clase luchadora. "
 				+ "Se caracteriza por su alto ataque y capacidad "
 				+ "de combear rápido. Principalmente usan hachas "
 				+ "y espadas, aunque también pueden usar martillos, "
