@@ -137,7 +137,7 @@ public class ModuleCommand implements CommandClass {
 
 		List<List<String>> partitions = Lists.partition(modules.stream().sorted().collect(Collectors.toList()), 10);
 		sender.sendMessage("§7Un total de §a" + modules.size() + " §7módulos activos:");
-		sender.sendMessage(partitions.stream().map(partition -> String.join("§7, §a", partition))
+		sender.sendMessage("§a" + partitions.stream().map(partition -> String.join("§7, §a", partition))
             .collect(Collectors.joining("\n")));
 
 	}
