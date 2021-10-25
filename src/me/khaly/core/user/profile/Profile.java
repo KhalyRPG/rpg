@@ -1,8 +1,11 @@
 package me.khaly.core.user.profile;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 
 import me.khaly.core.KhalyCore;
+import me.khaly.core.api.events.UserReceiveExperienceEvent;
+import me.khaly.core.enums.ExperienceCause;
 import me.khaly.core.libraries.YamlFile;
 import me.khaly.core.misc.Classes;
 import me.khaly.core.misc.Inventories;
@@ -33,8 +36,27 @@ public class Profile {
 		return exp;
 	}
 	
-	public void setExp(double amount) {
+	public void setExp(double amount, ExperienceCause cause) {
 		this.exp = amount;
+		
+		if(cause == null) {
+			cause = ExperienceCause.UNKNOWN;
+		}
+		
+		UserReceiveExperienceEvent event = new UserReceiveExperienceEvent(this.user, amount, cause);
+		
+		Bukkit.getPluginManager().callEvent(event);
+	}
+	
+	public void addExp(double amount, ExperienceCause cause) {
+		this.exp += amount;
+		
+		if(cause == null) {
+			cause = ExperienceCause.UNKNOWN;
+		}
+		
+		UserReceiveExperienceEvent event = new UserReceiveExperienceEvent(this.user, amount, cause);
+		Bukkit.getPluginManager().callEvent(event);
 	}
 	
 	public int getLevel() {
@@ -48,7 +70,7 @@ public class Profile {
 	public String toString() {
 		return name;
 	}
-	
+		
 	public ConfigurationSection getConfigurationSection() {
 		return user.getFile().getConfigurationSection("profiles." + name);
 	}
