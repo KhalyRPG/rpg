@@ -83,28 +83,36 @@ public class ItemUtils extends Util {
 				lore.add(Util.color("&cRequires "+Requirement.getByID(comp.getString("type")).getDisplayName()+" nivel "+comp.getInt("level")));
 			}*/
 		}
+		
 		NBTTagList enchants = (NBTTagList) data.get("enchantments");
 		if(data.hasKey("enchantments") && !enchants.isEmpty()) {
-			lore.add(TextUtil.color("&8&m            &f 「 ENCHANTMENTS 」 &8&m           "));
+			lore.add(TextUtil.color("&8&m          &f 「 ENCHANTMENTS 」 &8&m          "));
 			
-			StringBuilder enchantmentsText = new StringBuilder();
-			String split = "○";
+			List<String> enchantments = new ArrayList<>();
+			String split = "\n";
 			
 			for(Enchant enchant : EnchantmentUtil.readEnchantments(enchants)) {
 				ItemEnchantment enchantment = enchant.getEnchantment();
 				if(enchantment == null) {
 					continue;
 				}
+				
 				int level = enchant.getLevel();
 				
-				enchantmentsText.append("§b" + enchantment.getDisplayName() + " " + level + split);
+				enchantments.add("§9" + enchantment.getDisplayName() + " " + level);
 			}
+			StringBuilder build = new StringBuilder();
+			enchantments.forEach(ench -> {
+				if(!build.toString().isEmpty()) {
+					build.append("§f, ");
+				}
+				
+				build.append(ench);
+			});
 			
-			for(String line : enchantmentsText.toString().split(split)) {
-				lore.add(line);
-			}
-			
+			lore.add(build.toString());
 		}
+		
 		if(hasKeysNum(data, "strength", "damage", "defense", "max-durability", "health", "intelligence", "cursed-energy", "melee-damage", "ranged-damage")) {
 			lore.add(TextUtil.color("&8&m               &f 「 STATS 」 &8&m               "));
 			

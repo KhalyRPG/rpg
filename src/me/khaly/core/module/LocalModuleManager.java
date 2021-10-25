@@ -161,13 +161,11 @@ public class LocalModuleManager implements Listener {
 		}
 
 		if (module instanceof Listener) {
-			Bukkit.getPluginManager().registerEvents(((Listener) module), plugin);
+			Bukkit.getPluginManager().registerEvents((Listener) module, plugin);
 		}
 
 		module.load();
-
 		plugin.getLogger().info("§aSuccessfully registered module: §7" + module.getName());
-
 		return true;
 	}
 
