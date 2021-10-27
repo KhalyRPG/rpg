@@ -381,9 +381,10 @@ public class ItemUtils extends Util {
 		return CraftItemStack.asNMSCopy(item).getTag().getCompound("khaly");
 	}
 	
-	public static double getAttribute(ItemStack item, AttributeName attribute) {
+	@Deprecated
+	public static double getAttribute(ItemStack item, StatAttribute attribute) {
 		if(!ItemUtils.isCustomItem(item))return 0;
-		return getKhalyCompound(item).getDouble(attribute.getNameInTag());
+		return getKhalyCompound(item).getDouble(attribute.getTagID());
 	}
 	
 	public static boolean isMenuItem(ItemStack item) {
