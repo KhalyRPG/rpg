@@ -1,6 +1,7 @@
 package me.khaly.core.creator;
 
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 import me.khaly.core.creator.object.Cooldownable;
 import me.khaly.core.creator.object.Damageable;
@@ -20,7 +21,11 @@ public class ItemUniversalCreator extends ItemCreator implements Damn, Cooldowna
 	public ItemUniversalCreator(Material mat, int amount, short data, String displayName) {
 		super(mat, amount, data, displayName);
 	}
-
+	
+	public ItemUniversalCreator(ItemStack item, String displayName) {
+		super(item, displayName);
+	}
+	
 	@Override
 	public ItemUniversalCreator setStrength(double strength) {
 		customTag.setDouble("strength", strength);
