@@ -16,11 +16,13 @@ import me.fixeddev.commandflow.bukkit.annotation.Sender;
 import me.khaly.core.KhalyCore;
 import me.khaly.core.builder.LeatherArmorBuilder;
 import me.khaly.core.builder.SkullItemBuilder;
+import me.khaly.core.creator.ItemAccessoryCreator;
 import me.khaly.core.creator.ItemArmorCreator;
 import me.khaly.core.creator.ItemBowCreator;
 import me.khaly.core.creator.ItemCreator;
 import me.khaly.core.creator.ItemWeaponCreator;
 import me.khaly.core.enchantment.ItemEnchantment;
+import me.khaly.core.enums.AccessoryType;
 import me.khaly.core.enums.ItemCooldown;
 import me.khaly.core.enums.LeatherArmor;
 import me.khaly.core.enums.Rarity;
@@ -180,6 +182,37 @@ public class DeveloperCommand implements CommandClass {
 				.setIntelligence(20)
 				.setRarity(Rarity.FABLED)
 				);
+		
+		creators.add(new ItemAccessoryCreator(new SkullItemBuilder() {{
+			setTexture("http://textures.minecraft.net/texture/177c9c638bf3dcda348edea44e9a3db4abc1e239558661611f80c110472ad");
+		}}, "Ring of Healing", AccessoryType.RING)
+				.setIntelligence(-1)
+				.setHealthRegeneration(0.25)
+				.setRarity(Rarity.UNCOMMON)
+			);
+		creators.add(new ItemAccessoryCreator(new SkullItemBuilder() {{
+			setTexture("http://textures.minecraft.net/texture/1ea19079ca28158984ea29ea459173876e48453c2c8b864898935d69c80");
+		}}, "Ring of Strength", AccessoryType.RING)
+				.setStrength(5)
+				.setRarity(Rarity.COMMON)
+			);
+		creators.add(new ItemAccessoryCreator(new SkullItemBuilder() {{
+			setTexture("http://textures.minecraft.net/texture/8d17fdb8ff3c4a2ddd56ec2da21ec10008d36994ebab2ebac02c53a91b73d0d8");
+		}}, "Wise Bracelet", AccessoryType.BRACELET)
+				.setIntelligence(15)
+				.setManaRegeneration(0.75)
+				.setRarity(Rarity.EPIC)
+			);
+		creators.add(new ItemAccessoryCreator(new SkullItemBuilder() {{
+			setTexture("http://textures.minecraft.net/texture/177c9c638bf3dcda348edea44e9a3db4abc1e239558661611f80c110472ad");
+		}}, "Yisus Collar", AccessoryType.COLLAR)
+				.setStrength(2)
+				.setIntelligence(2)
+				.setDefense(2)
+				.setHealth(2)
+				.setLuck(2)
+				.setRarity(Rarity.SPECIAL)
+			);
 		
 	}
 	
