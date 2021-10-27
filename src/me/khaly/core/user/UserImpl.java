@@ -1,7 +1,10 @@
 package me.khaly.core.user;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.logging.Level;
@@ -10,10 +13,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import me.khaly.core.KhalyCore;
 import me.khaly.core.enums.StatAttribute;
 import me.khaly.core.libraries.YamlFile;
+import me.khaly.core.module.Module;
 import me.khaly.core.rpg.classes.object.RPGClass;
 import me.khaly.core.user.attributes.modifier.StatModifier;
 import me.khaly.core.user.attributes.modifier.StatModifier.ValueConsumer;
@@ -21,6 +26,8 @@ import me.khaly.core.user.attributes.stat.UserAttribute;
 import me.khaly.core.user.mana.Mana;
 import me.khaly.core.user.profile.Profile;
 import me.khaly.core.util.ItemUtils;
+import me.khaly.module.inventory.InventoryModule;
+import me.khaly.module.inventory.items.object.InventorySlot;
 
 public class UserImpl implements User {
 	
@@ -169,6 +176,9 @@ public class UserImpl implements User {
 			try {
 				addModifier(attribute, "global", (value) -> {
 					double amplifier = ItemUtils.getItemAmplifiers(core, getBukkitPlayer(), attribute);
+					
+					amplifier += evaluateModule(attribute);
+					
 					value.set(amplifier + getClassAmplifier(Types.valueOf(attribute.name())));
 				});
 			} catch(Exception ex) {
@@ -181,9 +191,30 @@ public class UserImpl implements User {
 		for(StatAttribute attribute : attributes) {
 			addModifier(attribute, "global", (value) -> {
 				double amplifier = ItemUtils.getItemAmplifiers(core, getBukkitPlayer(), attribute);
+				
+				amplifier += evaluateModule(attribute);
+				
 				value.set(amplifier);
 			});
 		}
+	}
+	
+	private double evaluateModule(StatAttribute attribute) {
+		double amplifier = 0;
+		sendMessage("&cTrying...");
+		if(this.core.getLocalModuleManager().getModule("inventory") != null) {
+			sendMessage("&aInitalized");
+			InventoryModule module = (InventoryModule) this.core.getLocalModuleManager().getModule("inventory");
+			Collection<InventorySlot> slots = module.getItems().values();
+			
+			for(InventorySlot slot : slots) {
+				ItemStack item = getBukkitPlayer().getInventory().getItem(slot.getInventorySlot());
+				amplifier += ItemUtils.getModifier(attribute, item);
+				sendMessage("&aLoaded: " + item.getType());
+			}
+		}
+		
+		return amplifier;
 	}
 	
 	private void put(UserAttribute attribute) {
