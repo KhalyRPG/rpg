@@ -11,7 +11,9 @@ public abstract class Module {
 	private String uniqueId;
 	private String author;
 	private float version;
+	
 	private boolean persistent = false;
+	private boolean isDisabled = false;
 
 	public Module(String name, String uniqueId, float version) {
 		this.core = KhalyCore.getInstance();
@@ -62,6 +64,18 @@ public abstract class Module {
 	
 	protected void setPersistent(boolean persistent) {
 		this.persistent = persistent;
+	}
+	
+	public void disable() {
+		this.isDisabled = true;
+	}
+	
+	public void enable() {
+		this.isDisabled = false;
+	}
+	
+	public boolean isDisabled() {
+		return isDisabled;
 	}
 	
 	protected void log(String message) {
