@@ -24,6 +24,7 @@ import org.bukkit.event.Listener;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 
+import me.fixeddev.commandflow.annotated.CommandClass;
 import me.khaly.core.KhalyCore;
 import me.khaly.core.util.FileUtil;
 import me.khaly.core.util.Futures;
@@ -163,6 +164,12 @@ public class LocalModuleManager implements Listener {
 		if (module instanceof Listener) {
 			Bukkit.getPluginManager().registerEvents((Listener) module, plugin);
 		}
+		
+		if(module instanceof CommandClass) {
+			plugin.getBukkitCommandManager()
+			      .registerCommands(plugin.getAnnotatedCommandTreeBuilder()
+						.fromClass((CommandClass) module));
+		}
 
 		module.load();
 		plugin.getLogger().info("§aSuccessfully registered module: §7" + module.getName());
@@ -205,6 +212,12 @@ public class LocalModuleManager implements Listener {
 
 		if (module instanceof Listener) {
 			HandlerList.unregisterAll((Listener) module);
+		}
+		
+		if (module instanceof CommandClass) {
+			plugin.getBukkitCommandManager()
+			      .unregisterCommands(plugin.getAnnotatedCommandTreeBuilder()
+			        	  .fromClass((CommandClass) module));
 		}
 
 		module.unload();
