@@ -29,7 +29,7 @@ public class Services {
 		this.files = new Files(core);
 		this.itemUpdater = new ItemUpdater(core);
 		
-		ItemCreator creator = new ItemCreator(Material.PAPER, "Khaly Menu");
+		ItemCreator creator = new ItemCreator(Material.NETHER_STAR, "Khaly Menu");
 		creator.setRarity(Rarity.SPECIAL);
 		creator.setType(ItemType.MENU);
 		creator.setCustomTagValue("menuItem", new NBTTagByte((byte)1));
