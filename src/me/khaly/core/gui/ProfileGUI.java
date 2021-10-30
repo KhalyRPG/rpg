@@ -101,7 +101,8 @@ public class ProfileGUI extends Gui {
 					if(!player.isOnline() || player == null || user.hasProfile()) {
 						return;
 					}
-					if (player.getOpenInventory() != null && player.getOpenInventory().getTopInventory() != null
+					if (player.getOpenInventory() != null 
+							&& player.getOpenInventory().getTopInventory() != null
 							&& player.getOpenInventory().getTopInventory().getTitle().equals("Selecciona una clase")) {
 						return;
 					}
