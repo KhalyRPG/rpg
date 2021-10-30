@@ -11,8 +11,7 @@ public class RemoveArrowsListener implements Listener {
 	public void removeArrows(ProjectileHitEvent event) {
 		if(event.getEntity() instanceof Arrow) {
 			Arrow arrow = (Arrow) event.getEntity();
-			
-			if(!arrow.isOnGround()) {
+			if(event.getHitBlock() == null) {
 				return;
 			}
 			
