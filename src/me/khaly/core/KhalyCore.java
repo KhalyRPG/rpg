@@ -11,6 +11,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.google.common.collect.ImmutableSet;
 
+import me.fixeddev.commandflow.annotated.AnnotatedCommandTreeBuilder;
+import me.fixeddev.commandflow.annotated.AnnotatedCommandTreeBuilderImpl;
+import me.fixeddev.commandflow.annotated.part.PartInjector;
+import me.fixeddev.commandflow.annotated.part.defaults.DefaultsModule;
+import me.fixeddev.commandflow.bukkit.BukkitCommandManager;
+import me.fixeddev.commandflow.bukkit.factory.BukkitModule;
 import me.khaly.core.libraries.Services;
 import me.khaly.core.loader.core.CoreLoader;
 import me.khaly.core.module.LocalModuleManager;
@@ -23,7 +29,9 @@ public class KhalyCore extends JavaPlugin {
 	private Services services;
 	private LocalModuleManager localModuleManager;
 	private boolean locked;
-
+	private AnnotatedCommandTreeBuilder builder;
+	private BukkitCommandManager commandManager;
+	
 	@Override
 	public void onLoad() {
 		loader = new CoreLoader(this);
@@ -34,6 +42,14 @@ public class KhalyCore extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
+		commandManager = new BukkitCommandManager("Core");
+		PartInjector injector = PartInjector.create();
+		
+		injector.install(new DefaultsModule());
+		injector.install(new BukkitModule());
+		
+		builder = new AnnotatedCommandTreeBuilderImpl(injector);
+		
 		loader.load();
 	}
 
@@ -62,7 +78,15 @@ public class KhalyCore extends JavaPlugin {
 		Map<UUID, User> cache = getServices().getCache().getUsers();
 		return cache.get(player.getUniqueId());
 	}
-
+	
+	public AnnotatedCommandTreeBuilder getAnnotatedCommandTreeBuilder() {
+		return builder;
+	}
+	
+	public BukkitCommandManager getBukkitCommandManager() {
+		return commandManager;
+	}
+	
 	public boolean isLocked() {
 		return locked;
 	}
