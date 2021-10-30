@@ -1,10 +1,7 @@
 package me.khaly.core.user;
 
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.logging.Level;
@@ -13,12 +10,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import me.khaly.core.KhalyCore;
 import me.khaly.core.enums.StatAttribute;
 import me.khaly.core.libraries.YamlFile;
-import me.khaly.core.module.Module;
 import me.khaly.core.rpg.classes.object.RPGClass;
 import me.khaly.core.user.attributes.modifier.StatModifier;
 import me.khaly.core.user.attributes.modifier.StatModifier.ValueConsumer;
@@ -26,8 +21,6 @@ import me.khaly.core.user.attributes.stat.UserAttribute;
 import me.khaly.core.user.mana.Mana;
 import me.khaly.core.user.profile.Profile;
 import me.khaly.core.util.ItemUtils;
-import me.khaly.module.inventory.InventoryModule;
-import me.khaly.module.inventory.items.object.InventorySlot;
 
 public class UserImpl implements User {
 	
@@ -56,7 +49,6 @@ public class UserImpl implements User {
 			}
 		}
 		this.mana = new Mana(this);
-		
 	}
 	
 	@Override
@@ -177,7 +169,7 @@ public class UserImpl implements User {
 				addModifier(attribute, "global", (value) -> {
 					double amplifier = ItemUtils.getItemAmplifiers(core, getBukkitPlayer(), attribute);
 					
-					amplifier += evaluateModule(attribute);
+					//amplifier += evaluateModule(attribute);
 					
 					value.set(amplifier + getClassAmplifier(Types.valueOf(attribute.name())));
 				});
@@ -192,13 +184,14 @@ public class UserImpl implements User {
 			addModifier(attribute, "global", (value) -> {
 				double amplifier = ItemUtils.getItemAmplifiers(core, getBukkitPlayer(), attribute);
 				
-				amplifier += evaluateModule(attribute);
+				//amplifier += evaluateModule(attribute);
 				
 				value.set(amplifier);
 			});
 		}
 	}
 	
+	/*
 	private double evaluateModule(StatAttribute attribute) {
 		double amplifier = 0;
 		sendMessage("&cTrying...");
@@ -215,7 +208,7 @@ public class UserImpl implements User {
 		}
 		
 		return amplifier;
-	}
+	}*/
 	
 	private void put(UserAttribute attribute) {
 		attributes.put(attribute.getAttribute(), attribute);
