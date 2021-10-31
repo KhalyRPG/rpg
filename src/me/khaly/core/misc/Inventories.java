@@ -5,8 +5,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.util.io.BukkitObjectInputStream;
@@ -15,34 +18,43 @@ import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
 import me.khaly.core.KhalyCore;
 import me.khaly.core.libraries.YamlFile;
+import me.khaly.core.user.User;
 
 public class Inventories {
 	
 	private YamlFile file;
-	private Player p;
+	private UUID uuid;
 
 	public Inventories(KhalyCore core, Player p) {
 		this.file = new YamlFile(core, p.getUniqueId().toString(), ".yml", "inventories");
-		this.p = p;
+		this.uuid = p.getUniqueId();
 	}
 
+	public Inventories(KhalyCore core, User p) {
+		this.file = new YamlFile(core, p.getBukkitPlayer().getUniqueId().toString(), ".yml", "inventories");
+		this.uuid = p.getBukkitPlayer().getUniqueId();
+	}
+	
 	public boolean hasInventoryInFile() {
 		return this.file.contains("inventory");
 	}
 
 	public void saveInventory() {
-		this.file.set("inventory", toBase64(this.p));
+		Player p = Bukkit.getPlayer(uuid);
+		this.file.set("inventory", toBase64(p));
 		this.file.save();
 	}
 
 	public void loadInventory(String base64) {
 		// if(!this.hasInventoryInFile())return;
+		Player p = Bukkit.getPlayer(uuid);
 		p.getInventory().clear();
 		PlayerInventory inv = p.getInventory();
 		setItems(fromBase64(base64), inv);
 	}
 	
 	public void loadInventory() {
+		Player p = Bukkit.getPlayer(uuid);
 		p.getInventory().clear();
 		PlayerInventory inv = p.getInventory();
 		setItems(fromBase64(this.file.getString("inventory")), inv);
@@ -50,7 +62,7 @@ public class Inventories {
 		file.save();
 	}
 	
-	public String toBase64(PlayerInventory inv) {
+	public String toBase64(Inventory inv) {
 		try {
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			BukkitObjectOutputStream dataOutput = new BukkitObjectOutputStream(outputStream);

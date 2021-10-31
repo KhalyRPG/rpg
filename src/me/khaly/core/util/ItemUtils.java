@@ -12,7 +12,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import me.khaly.core.KhalyCore;
 import me.khaly.core.enchantment.Enchant;
 import me.khaly.core.enchantment.ItemEnchantment;
-import me.khaly.core.enums.AttributeName;
 import me.khaly.core.enums.ItemCooldown;
 import me.khaly.core.enums.ItemType;
 import me.khaly.core.enums.PassiveType;
