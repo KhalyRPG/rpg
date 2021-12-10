@@ -1,6 +1,7 @@
 package me.khaly.core.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.Material;
@@ -353,11 +354,27 @@ public class ItemUtils extends Util {
 	public static double getHandAmplifiers(KhalyCore core, Player player, StatAttribute modifier) {
 		double amplifier = 0;
 		ItemStack hand = player.getInventory().getItemInMainHand();
-		if(!ItemUtils.isType(hand, ItemType.ARMOR)) {
+		if(!ItemUtils.isTypes(hand, ItemType.ARMOR, ItemType.BRACELET, ItemType.COLLAR, ItemType.RING, ItemType.MENU)) {
 			if(ItemUtils.canUseItem(core, player, hand))
 				amplifier += ItemUtils.getModifier(modifier, hand);
 		}
 		return amplifier;
+	}
+	
+	public static boolean isTypes(ItemStack item, ItemType... types) {
+		return isTypes(item, Arrays.asList(types));
+	}
+	
+	public static boolean isTypes(ItemStack item, List<ItemType> types) {
+		boolean a = false;
+		for(ItemType type : types) {
+			if(isType(item, type)) {
+				a = true;
+				break;
+			}
+		}
+		
+		return a;
 	}
 	
 	public static double getItemAmplifiers(KhalyCore core, Player player, StatAttribute modifier) {

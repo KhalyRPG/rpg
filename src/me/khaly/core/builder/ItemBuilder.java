@@ -140,7 +140,7 @@ public class ItemBuilder {
 			dataOutput.close();
 			return Base64Coder.encodeLines(outputStream.toByteArray());
 		} catch (Exception e) {
-			throw new IllegalStateException("Unable to save item stack", e);
+			throw new IllegalStateException("Unable to save item", e);
 		}
 	}
 

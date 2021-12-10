@@ -45,7 +45,6 @@ public class CoreLoader implements Loader {
 				user.getProfile().save();
 			}
 		}
-		
 		main.getLocalModuleManager().kill();
 	}
 	
