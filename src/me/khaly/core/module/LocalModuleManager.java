@@ -57,7 +57,7 @@ public class LocalModuleManager implements Listener {
 	}
 
 	public void kill() {
-		unregisterAll();
+		unregisterAll(true);
 	}
 
 	public File getModulesFolder() {
@@ -195,9 +195,9 @@ public class LocalModuleManager implements Listener {
 		});
 	}
 
-	private void unregisterAll() {
+	public void unregisterAll(boolean force) {
 		for (final Module module : Sets.newHashSet(modules.values())) {
-			if (module.isPersistent()) {
+			if (module.isPersistent() && !force) {
 				continue;
 			}
 

@@ -3,6 +3,7 @@ package me.khaly.core.module;
 import org.bukkit.Bukkit;
 
 import me.khaly.core.KhalyCore;
+import me.khaly.core.util.TextUtil;
 
 public abstract class Module {
 
@@ -78,8 +79,13 @@ public abstract class Module {
 		return isDisabled;
 	}
 	
-	protected void log(String message) {
-		Bukkit.getConsoleSender().sendMessage("[" + name + "] " + message);
+	public void log(String message) {
+		System.out.println(TextUtil.color("[" + name + "] " + message));
+	}
+	
+	public void log(String message, Exception ex) {
+		this.log(message);
+		ex.printStackTrace();
 	}
 	
 	protected void setAuthor(String author) {
