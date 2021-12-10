@@ -14,4 +14,8 @@ public class MathUtils extends Util {
 		return number + (percentage * (number / 100));
 	}
 	
+	public static boolean isEven(double number) {
+		return ((int)(number) & 1) == 0;
+	}
+	
 }
