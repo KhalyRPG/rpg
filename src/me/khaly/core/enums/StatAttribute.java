@@ -12,7 +12,9 @@ public enum StatAttribute {
 	CURSED_ENERGY("cursed-energy"),
 	MELEE_DAMAGE(1, "melee-damage"),
 	RANGED_DAMAGE(1, "ranged-damage"),
-	ATTACK_SPEED("attack-speed");
+	ATTACK_SPEED("attack-speed"),
+	CRITIC_DAMAGE(5, "critic_damage"),
+	CRITIC_CHANCE(10, "critic_chance");
 	
 	private double defaultValue;
 	private String tagID;
