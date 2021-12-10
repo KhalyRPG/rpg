@@ -12,6 +12,7 @@ import me.khaly.core.enums.Symbols;
 import me.khaly.core.task.object.Task;
 import me.khaly.core.user.User;
 import me.khaly.core.user.mana.Mana;
+import me.khaly.core.util.MathUtils;
 import me.khaly.core.util.TextUtil;
 import net.minecraft.server.v1_12_R1.DataWatcherObject;
 import net.minecraft.server.v1_12_R1.DataWatcherRegistry;
@@ -67,7 +68,7 @@ public class ActionbarTask extends Task {
 	}
 	
 	private int getHealthScale(int health) {
-		double calculation = 0.0985;
+		double calculation = 0.0585;
 		int max = 40;
 		int min = 10;
 		int result = (int)(calculation * health);
@@ -76,6 +77,10 @@ public class ActionbarTask extends Task {
 			return max;
 		} else if(result < min) {
 			return min;
+		}
+		
+		if(!MathUtils.isEven(result)) {
+			result += 1;
 		}
 		
 		return result;
